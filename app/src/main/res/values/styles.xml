@@ -37,4 +37,13 @@
         <item name="android:colorControlNormal">@color/editText_ColorWhite</item>
         <item name="android:colorControlActivated">@color/editText_ColorWhite</item>
     </style>
+
+    <style name="EditTextBlack" parent="TextAppearance.AppCompat">
+        <item name="android:textColorHint">@color/editText_ColorBlack</item>
+        <item name="android:textSize">@dimen/editText_textSize_login</item>
+        <item name="android:textColorPrimary">@color/editText_ColorBlack</item>
+        <item name="colorAccent">@color/editText_ColorBlack</item>
+        <item name="android:colorControlNormal">@color/editText_ColorBlack</item>
+        <item name="android:colorControlActivated">@color/editText_ColorBlack</item>
+    </style>
 </resources>

@@ -5,4 +5,7 @@
     <string name="login">Log In</string>
     <string name="createAccount_01">¿Don´t have an account?</string>
     <string name="createAccount_02">Sign up here.</string>
+    <string name="hint_location">Ubicación</string>
+    <string name="hint_telefono">Teléfono</string>
+    <string name="signUp">REGISTRARSE</string>
 </resources>

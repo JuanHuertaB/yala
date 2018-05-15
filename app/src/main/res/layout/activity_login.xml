@@ -41,7 +41,7 @@
                     android:id="@+id/logo"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:paddingBottom="@dimen/marginBottom"
+                    android:paddingVertical="@dimen/marginBottom"
                     android:layout_alignParentBottom="true"
                     android:layout_centerHorizontal="true"
                     android:src="@drawable/logo"/>
@@ -89,21 +89,26 @@
                     android:hint="@string/hint_password" />
             </android.support.design.widget.TextInputLayout>
 
-            <Button
-                android:id="@+id/btnLogin"
-                android:layout_width="160dp"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:fontFamily="@font/open_sans_light"
-                android:text="@string/login"
-                android:theme="@style/RaisedButtonDark" />
+                android:paddingVertical="@dimen/marginTop"
+                android:gravity="center">
+                <Button
+                    android:id="@+id/btnLogin"
+                    android:layout_width="160dp"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/open_sans_light"
+                    android:text="@string/login"
+                    android:theme="@style/RaisedButtonDark" />
+            </LinearLayout>
 
             //Linear Layout para agrupar los dos textView de Crear Cuenta
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:paddingTop="35dp"
+                android:paddingVertical="35dp"
                 android:orientation="horizontal">
 
                 <TextView

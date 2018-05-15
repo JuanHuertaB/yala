@@ -7,4 +7,7 @@
     <string name="login">Ingresar</string>
     <string name="createAccount_01">¿No tienes una cuenta? </string>
     <string name="createAccount_02"> Registrate aquí.</string>
+    <string name="hint_location">Ubicación</string>
+    <string name="hint_telefono">Teléfono</string>
+    <string name="signUp">REGISTRARSE</string>
 </resources>
