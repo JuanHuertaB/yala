@@ -1,0 +1,8 @@
+<resources>
+    <dimen name="fab_margin">16dp</dimen>
+    <dimen name="editText_textSize_login">20dp</dimen>
+    <dimen name="textSize_name_logo">50dp</dimen>
+    <dimen name="marginTop">16dp</dimen>
+    <dimen name="marginBottom">16dp</dimen>
+    <dimen name="create_account_size">16sp</dimen>
+</resources>
