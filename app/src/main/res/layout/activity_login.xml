@@ -99,7 +99,6 @@
                 android:theme="@style/RaisedButtonDark" />
 
             //Linear Layout para agrupar los dos textView de Crear Cuenta
-
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
