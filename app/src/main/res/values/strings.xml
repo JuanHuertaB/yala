@@ -10,4 +10,12 @@
     <string name="hint_location">Ubicación</string>
     <string name="hint_telefono">Teléfono</string>
     <string name="signUp">REGISTRARSE</string>
+    <string name="toolbar_title_createAccount">CREAR CUENTA</string>
+
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="profile_tab">Perfil</string>
+    <string name="collection_tab">Colección</string>
+    <string name="search_tab">Buscar</string>
 </resources>
