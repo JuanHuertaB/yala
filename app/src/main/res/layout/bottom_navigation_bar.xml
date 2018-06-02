@@ -13,6 +13,6 @@
         app:menu="@menu/nav_item"
         app:itemIconTint="@color/bottom_bar_color"
         app:itemTextColor="@color/bottom_bar_color"
-        app:elevation="3.5dp">
+        app:elevation="5dp">
 
     </android.support.design.widget.BottomNavigationView>

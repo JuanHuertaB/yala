@@ -1,91 +1,131 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_below="@+id/toolbar"
     tools:context=".LoginActivity"
-    android:background="@android:color/white">
+    android:background="@color/background">
 
- <include layout="@layout/actionbar_toolbar"/>
-
+    <include layout="@layout/actionbar_toolbar"/>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:isScrollContainer="true"
         android:orientation="vertical"
-        android:paddingLeft="15dp"
-        android:paddingRight="15dp"
-        android:paddingTop="55dp">
+        android:layout_marginTop="@dimen/height_toolbar"
+        android:paddingVertical="40dp"
+        android:paddingRight="@dimen/padding_izquierda"
+        android:paddingLeft="@dimen/padding_derecha">
 
-        <android.support.design.widget.TextInputLayout
+        //CAMPO USUARIO
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:theme="@style/EditTextBlack">
+            android:paddingVertical="@dimen/paddingVertical_inputText"
+            android:orientation="horizontal">
 
-            <android.support.design.widget.TextInputEditText
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_profile"/>
+            <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/open_sans_light"
-                android:hint="@string/hint_username" />
-        </android.support.design.widget.TextInputLayout>
+                android:theme="@style/EditTextBlack">
 
-        <android.support.design.widget.TextInputLayout
+                <android.support.design.widget.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/hint_username"/>
+            </android.support.design.widget.TextInputLayout>
+        </LinearLayout>
+
+        //CAMPO CONTRASEÑA
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:theme="@style/EditTextBlack">
+            android:paddingVertical="@dimen/paddingVertical_inputText"
+            android:orientation="horizontal">
 
-            <android.support.design.widget.TextInputEditText
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:src="@drawable/password"/>
+            <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/open_sans_light"
-                android:hint="@string/hint_password" />
-        </android.support.design.widget.TextInputLayout>
+                android:theme="@style/EditTextBlack">
 
-        <android.support.design.widget.TextInputLayout
+                <android.support.design.widget.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/hint_password"
+                    android:inputType="textPassword"/>
+            </android.support.design.widget.TextInputLayout>
+        </LinearLayout>
+
+        //CAMPO UBICACIÓN
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:theme="@style/EditTextBlack">
-
-            <android.support.design.widget.TextInputEditText
+            android:paddingVertical="@dimen/paddingVertical_inputText"
+            android:orientation="horizontal">
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/location"/>
+            <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/open_sans_light"
-                android:hint="@string/hint_location" />
-        </android.support.design.widget.TextInputLayout>
+                android:theme="@style/EditTextBlack">
 
-        <android.support.design.widget.TextInputLayout
+                <android.support.design.widget.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/hint_location"
+                    android:inputType="textPassword"/>
+            </android.support.design.widget.TextInputLayout>
+        </LinearLayout>
+
+        //CAMPO TELÉFONO
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:theme="@style/EditTextBlack">
-
-            <android.support.design.widget.TextInputEditText
+            android:paddingVertical="@dimen/paddingVertical_inputText"
+            android:orientation="horizontal">
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/phone"/>
+            <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/open_sans_light"
-                android:hint="@string/hint_telefono" />
-        </android.support.design.widget.TextInputLayout>
+                android:theme="@style/EditTextBlack">
 
-        <RelativeLayout
+                <android.support.design.widget.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/hint_telefono"
+                    android:inputType="textPassword"/>
+            </android.support.design.widget.TextInputLayout>
+        </LinearLayout>
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center"
-            android:paddingVertical="20dp">
+            android:paddingVertical="@dimen/paddingVertical">
 
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:fontFamily="@font/open_sans_bold"
+                android:paddingStart="15dp"
                 android:text="@string/signUp"
-                android:textAllCaps="false"
-                android:theme="@style/RaisedButtonDark" />
+                android:theme="@style/RaisedButtonDark"/>
 
-        </RelativeLayout>
-
+        </LinearLayout>
 
     </LinearLayout>
 
-</android.support.design.widget.CoordinatorLayout>
+</RelativeLayout>

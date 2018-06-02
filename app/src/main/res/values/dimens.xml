@@ -6,4 +6,9 @@
     <dimen name="marginBottom">16dp</dimen>
     <dimen name="create_account_size">16sp</dimen>
     <dimen name="height_bottombar">56dp</dimen>
+    <dimen name="height_toolbar">56</dimen>
+    <dimen name="padding_izquierda">10</dimen>
+    <dimen name="padding_derecha">10</dimen>
+    <dimen name="paddingVertical_inputText">10</dimen>
+    <dimen name="paddingVertical">15dp</dimen>
 </resources>
