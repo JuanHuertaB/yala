@@ -18,10 +18,14 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
         </activity>
+
         <activity
-            android:name=".CreateAccountActivity"
-            android:theme="@style/AppTheme" />
+            android:name=".CreateAccountActivity">
+
+        </activity>
+
         <activity
             android:name=".ReferenciaActivity"
             android:label="@string/title_activity_referencia"
@@ -31,7 +35,9 @@
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
 
-        <activity android:name=".ContainerActivity"></activity>
+        <activity android:name=".ContainerActivity">
+
+        </activity>
     </application>
 
 </manifest>

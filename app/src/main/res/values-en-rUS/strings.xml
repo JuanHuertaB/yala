@@ -6,7 +6,7 @@
     <string name="createAccount_01">¿Don´t have an account?</string>
     <string name="createAccount_02">Sign up here.</string>
     <string name="hint_location">Location</string>
-    <string name="hint_telefono">Phone Number</string>
+    <string name="hint_phoneNumber">Phone Number</string>
     <string name="signUp">Sign Up</string>
     <string name="profile_tab">Profile</string>
     <string name="collection_tab">Collection</string>

@@ -68,7 +68,7 @@
                 <android.support.design.widget.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/open_sans_light"
+                    android:fontFamily="@font/pontano_sans"
                     android:hint="@string/hint_username" />
 
             </android.support.design.widget.TextInputLayout>
@@ -82,7 +82,7 @@
                 <android.support.design.widget.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/open_sans_light"
+                    android:fontFamily="@font/pontano_sans"
                     android:hint="@string/hint_password" />
             </android.support.design.widget.TextInputLayout>
 
@@ -94,7 +94,7 @@
                 <Button
                     android:layout_width="160dp"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/open_sans_bold"
+                    android:fontFamily="@font/pontano_sans"
                     android:text="@string/login"
                     android:theme="@style/RaisedButtonDark"
                     android:onClick="LogIn"/>
@@ -123,7 +123,8 @@
                     android:textSize="@dimen/create_account_size"
                     android:paddingLeft="5dp"
                     android:text="@string/createAccount_02"
-                    android:textColor="@color/editText_ColorWhite" />
+                    android:textColor="@color/editText_ColorWhite"
+                    android:onClick="signUp"/>
 
             </LinearLayout>
 
