@@ -3,13 +3,17 @@
     <string name="hint_username">Username</string>
     <string name="hint_password">Password</string>
     <string name="login">Log In</string>
-    <string name="createAccount_01">¿Don´t have an account?</string>
-    <string name="createAccount_02">Sign up here.</string>
+    <string name="createAccount_01">¿Do you need an account?</string>
+    <string name="createAccount_02">Create one here.</string>
     <string name="hint_location">Location</string>
     <string name="hint_phoneNumber">Phone Number</string>
     <string name="signUp">Sign Up</string>
     <string name="profile_tab">Profile</string>
     <string name="collection_tab">Collection</string>
     <string name="search_tab">Search</string>
+    <string name="edit">Editar</string>
+    <string name="total">Total:</string>
+    <string name="Completadas">Completed:</string>
+    <string name="Repetidas">Repeated:</string>
 
 </resources>

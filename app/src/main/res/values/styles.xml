@@ -6,6 +6,7 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:textColor">@android:color/white</item>
     </style>
 
     <style name="AppTheme.NoActionBar">
@@ -13,16 +14,50 @@
         <item name="windowNoTitle">true</item>
     </style>
 
+    <style name="BlackStyleText" parent="TextAppearance.AppCompat">
+        <item name="android:textColor">@color/editText_ColorBlack</item>
+        <item name="android:fontFamily">@font/didact_gothic</item>
+    </style>
+
+
+    <style name="GrayStyleText" parent="TextAppearance.AppCompat">
+        <item name="android:textColor">@color/textColorGray</item>
+        <item name="android:fontFamily">"@font/didact_gothic"</item>
+    </style>
+
+    <style name="WhiteStyleText" parent="TextAppearance.AppCompat">
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:fontFamily">"@font/didact_gothic"</item>
+    </style>
+
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
-    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+    <style name="AppTheme.PopupOverlay" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="android:actionMenuTextColor">@android:color/white</item>
+        <item name="actionBarStyle">@style/TransparentToolBar</item>
+    </style>
+
+    <style name="TransparentToolBar" parent="Base.Theme.AppCompat.Light.DarkActionBar">
+        <item name="android:background">@android:color/transparent</item>
+    </style>
 
     <style name="RaisedButtonDark" parent="Theme.AppCompat.Light">
-        <item name="colorButtonNormal">@color/colorPrimaryDark</item>
-        <item name="colorControlHighlight">@color/colorPrimary</item>
+        <item name="colorButtonNormal">@color/Color_contraste</item>
+        <item name="colorControlHighlight">@color/Color_contraste_dark</item>
         <item name="android:textColor">@android:color/white</item>
+        <item name="android:fontFamily">@font/didact_gothic</item>
+        <item name="android:textStyle">bold</item>
     </style>
     
+    <style name="EditTextWhite_Gray" parent="TextAppearance.AppCompat">
+        <item name="android:textColorHint">@android:color/darker_gray</item>
+        <item name="android:textSize">@dimen/editText_textSize_login</item>
+        <item name="android:textColorPrimary">@color/editText_ColorWhite</item>
+        <item name="colorAccent">@color/editText_ColorWhite</item>
+        <item name="colorControlNormal">@android:color/darker_gray</item>
+        <item name="colorControlActivated">@android:color/darker_gray</item>
+</style>
+
     <style name="EditTextWhite" parent="TextAppearance.AppCompat">
         <item name="android:textColorHint">@color/editText_ColorWhite</item>
         <item name="android:textSize">@dimen/editText_textSize_login</item>
@@ -30,6 +65,7 @@
         <item name="colorAccent">@color/editText_ColorWhite</item>
         <item name="colorControlNormal">@color/editText_ColorWhite</item>
         <item name="colorControlActivated">@color/editText_ColorWhite</item>
+        <item name="android:fontFamily">@font/didact_gothic</item>
     </style>
 
     <style name="EditTextBlack" parent="TextAppearance.AppCompat">

@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:cardView="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/albumCard"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/height_cardView"
+    android:layout_marginBottom="@dimen/marginTop"
+    android:background="@color/background">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="center_horizontal"
+        android:orientation="horizontal">
+
+        //PORTADA DEL ÁLBUM
+        <ImageView
+            android:id="@+id/pictureCard"
+            android:layout_width="140dp"
+            android:layout_height="match_parent"
+            android:background="@drawable/dragon_ball"/>
+
+            //NOMBRE ÁLBUM Y EDITORIAL
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:paddingTop="@dimen/marginTop"
+                android:paddingStart="@dimen/padding_derecha">
+
+                //NOMBRE
+                <TextView
+                    android:id="@+id/albumNameCard"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Dragon Ball Super"
+                    android:fontFamily="@font/didact_gothic"
+                    android:textColor="@android:color/black"
+                    android:textStyle="bold" />
+                //EDITORIAL
+                <TextView
+                    android:id="@+id/editorialCard"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Panini"
+                    android:fontFamily="@font/didact_gothic"
+                    android:textSize="13dp"
+                    android:textColor="@color/textColorGray"/>
+
+                //TOTAL
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/marginTop_textCardView"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/total"
+                        android:textColor="@android:color/black"
+                        android:fontFamily="@font/didact_gothic"/>
+
+                    <TextView
+                        android:id="@+id/totalCard"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:paddingStart="5dp"
+                        android:text="600"
+                        android:textStyle="bold"
+                        android:fontFamily="@font/didact_gothic"
+                        android:textColor="@android:color/black"/>
+
+                </LinearLayout>
+
+                //COMPLETADAS
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/Completadas"
+                        android:textColor="@android:color/black"
+                        android:fontFamily="@font/didact_gothic"/>
+
+                    <TextView
+                        android:id="@+id/completadasCard"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:paddingStart="5dp"
+                        android:text="149"
+                        android:textStyle="bold"
+                        android:fontFamily="@font/didact_gothic"
+                        android:textColor="@android:color/black"/>
+
+                </LinearLayout>
+
+                //REPETIDAS
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/Repetidas"
+                        android:textColor="@android:color/black"
+                        android:fontFamily="@font/didact_gothic"/>
+
+                    <TextView
+                        android:id="@+id/repetidasCard"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:paddingStart="5dp"
+                        android:text="50"
+                        android:textStyle="bold"
+                        android:fontFamily="@font/didact_gothic"
+                        android:textColor="@android:color/black"/>
+
+                </LinearLayout>
+            </LinearLayout>
+    </LinearLayout>
+
+</android.support.v7.widget.CardView>

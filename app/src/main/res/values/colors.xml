@@ -7,4 +7,7 @@
     <color name="colorTitle">#ffffff</color>
     <color name="editText_ColorBlack">#000000</color>
     <color name="background">#c5dcd8</color>
+    <color name="Color_contraste">#FF5722</color>
+    <color name="Color_contraste_dark">#bf411a</color>
+    <color name="textColorGray">#393939</color>
 </resources>

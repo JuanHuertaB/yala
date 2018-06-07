@@ -5,17 +5,20 @@
     <string name="hint_username">Usuario</string>
     <string name="hint_password">Contraseña</string>
     <string name="login">Ingresar</string>
-    <string name="createAccount_01">¿No tienes una cuenta? </string>
-    <string name="createAccount_02"> Registrate aquí.</string>
+    <string name="createAccount_01">¿Necesitas una cuenta? </string>
+    <string name="createAccount_02"> Crea una aquí.</string>
     <string name="hint_location">Ubicación</string>
     <string name="hint_phoneNumber">Teléfono</string>
     <string name="signUp">REGISTRARSE</string>
     <string name="toolbar_title_createAccount">CREAR CUENTA</string>
-
-
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="profile_tab">Perfil</string>
     <string name="collection_tab">Colección</string>
     <string name="search_tab">Buscar</string>
+    <string name="signUpTitle">CREAR CUENTA</string>
+    <string name="edit">Editar</string>
+    <string name="total">Total:</string>
+    <string name="Completadas">Completadas:</string>
+    <string name="Repetidas">Repetidas:</string>
+    <string name="Coleccion_toolbar_title">Colección</string>
+
 </resources>

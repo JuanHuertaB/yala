@@ -22,7 +22,13 @@
         </activity>
 
         <activity
-            android:name=".CreateAccountActivity">
+            android:name=".CreateAccountActivity"
+            android:theme="@style/AppTheme"
+            android:parentActivityName=".LoginActivity">
+
+            <meta-data android:name="android.support.PATENT_ACTIVITY"
+                android:value=".activity_login"/>
+
 
         </activity>
 
@@ -35,7 +41,8 @@
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
 
-        <activity android:name=".ContainerActivity">
+        <activity android:name=".ContainerActivity"
+            android:theme="@style/AppTheme">
 
         </activity>
     </application>
