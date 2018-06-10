@@ -40,10 +40,12 @@
                     android:theme="@style/EditTextBlack">
 
                     <android.support.design.widget.TextInputEditText
+                        android:id="@+id/username_add"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/didact_gothic"
                         android:hint="@string/hint_username" />
+
                 </android.support.design.widget.TextInputLayout>
             </LinearLayout>
 
@@ -64,6 +66,7 @@
                     android:theme="@style/EditTextBlack">
 
                     <android.support.design.widget.TextInputEditText
+                        android:id="@+id/password_add"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/didact_gothic"
@@ -89,6 +92,7 @@
                     android:theme="@style/EditTextBlack">
 
                     <android.support.design.widget.TextInputEditText
+                        android:id="@+id/location_add"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/didact_gothic"
@@ -114,6 +118,7 @@
                     android:theme="@style/EditTextBlack">
 
                     <android.support.design.widget.TextInputEditText
+                        android:id="@+id/phoneNumber_add"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/didact_gothic"
@@ -127,6 +132,7 @@
                 android:layout_height="match_parent"
                 android:layout_marginTop="45dp">
                 <Button
+                    android:id="@+id/createAccount_btn"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/didact_gothic"

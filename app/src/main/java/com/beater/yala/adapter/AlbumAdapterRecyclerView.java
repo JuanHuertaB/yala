@@ -1,7 +1,7 @@
 package com.beater.yala.adapter;
 
 import android.app.Activity;
-import android.support.v4.app.FragmentActivity;
+import android.graphics.Picture;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.beater.yala.R;
 import com.beater.yala.model.Album;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -44,6 +45,7 @@ public class AlbumAdapterRecyclerView  extends RecyclerView.Adapter<AlbumAdapter
         holder.totalCard.setText(Integer.toString(album.getTotal()));
         holder.completadasCard.setText(Integer.toString(album.getCompletadas()));
         holder.repetidasCard.setText(Integer.toString(album.getRepetidas()));
+        Picasso.get().load(album.getPicture()).into(holder.pictureCard);
     }
 
     @Override

@@ -1,5 +1,6 @@
 package com.beater.yala;
 
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.annotation.NonNull;
@@ -18,6 +19,7 @@ public class ContainerActivity extends AppCompatActivity {
     private BottomNavigationView bottomNavBar;
     private FrameLayout frameLayout;
 
+    private FloatingActionButton fabAddAlbum;
     private ProfileFragment profileFragment;
     private CollectionFragment collectionFragment;
     private SearchFragment searchFragment;
@@ -34,8 +36,11 @@ public class ContainerActivity extends AppCompatActivity {
 
         bottomNavBar = (BottomNavigationView) findViewById(R.id.bottomNavigationBar);
         frameLayout = (FrameLayout) findViewById(R.id.main_frame);
+        fabAddAlbum = (FloatingActionButton) findViewById(R.id.fab_id);
 
-        setFragment(profileFragment);
+        //Primer fragmento en mostrar
+        setFragment(collectionFragment);
+        bottomNavBar.setSelectedItemId(R.id.collection_tab);
 
         bottomNavBar.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override

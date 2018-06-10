@@ -1,6 +1,7 @@
 package com.beater.yala.fragments;
 
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -48,16 +49,19 @@ public class CollectionFragment extends Fragment {
 
         albumsRecycler.setAdapter(albumAdapterRecyclerView);
 
+        FloatingActionButton floatingActionButton = (FloatingActionButton) view.findViewById(R.id.fab_id);
+
+
         return view;
 
     }
 
     public ArrayList<Album> buildAlbumes(){
         ArrayList<Album> album = new ArrayList<>();
-        album.add(new Album("", "Dragon Ball Super", "Panini",600, 496, 54 ));
-        album.add(new Album("https://goo.gl/images/3f4fY3", "Rusia 2018", "Panini",600, 300, 54 ));
-        album.add(new Album("", "Avengers: Infinity War", "Panini",400, 49, 10 ));
-        album.add(new Album("", "Avengers: Infinity War", "Panini",400, 49, 10 ));
+        album.add(new Album("https://i.imgur.com/rtf4wlj.jpg", "Dragon Ball Super", "Panini",600, 496, 54 ));
+        album.add(new Album("https://i.imgur.com/JJiwCQF.jpg", "Dragon Ball Z", "Panini",600, 300, 54 ));
+        album.add(new Album("https://i.imgur.com/3RSPN31.jpg", "Rusia 2018", "Panini",600, 300, 54 ));
+        album.add(new Album("https://i.imgur.com/XBcoUKm.jpg", "Avengers: Infinity War", "Panini",600, 300, 54 ));
         return album;
     }
 
