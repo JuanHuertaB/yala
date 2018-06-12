@@ -13,6 +13,7 @@ import android.widget.FrameLayout;
 import com.beater.yala.fragments.CollectionFragment;
 import com.beater.yala.fragments.ProfileFragment;
 import com.beater.yala.fragments.SearchFragment;
+import com.beater.yala.model.Coleccionista;
 
 public class ContainerActivity extends AppCompatActivity {
 
@@ -38,9 +39,14 @@ public class ContainerActivity extends AppCompatActivity {
         frameLayout = (FrameLayout) findViewById(R.id.main_frame);
         fabAddAlbum = (FloatingActionButton) findViewById(R.id.fab_id);
 
+        Bundle objetoEnviado = getIntent().getExtras();
+        Coleccionista coleccionista = null;
+
+
+
         //Primer fragmento en mostrar
-        setFragment(collectionFragment);
-        bottomNavBar.setSelectedItemId(R.id.collection_tab);
+        setFragment(profileFragment);
+        bottomNavBar.setSelectedItemId(R.id.profile_tab);
 
         bottomNavBar.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override

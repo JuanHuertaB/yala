@@ -59,6 +59,7 @@
                 android:theme="@style/EditTextWhite">
 
                 <android.support.design.widget.TextInputEditText
+                    android:id="@+id/username"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/hint_username" />
@@ -72,6 +73,7 @@
                 android:theme="@style/EditTextWhite">
 
                 <android.support.design.widget.TextInputEditText
+                    android:id="@+id/password"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/hint_password" />
@@ -83,12 +85,12 @@
             android:paddingVertical="@dimen/marginTop"
             android:gravity="center">
             <Button
+                android:id="@+id/login_btn"
                 android:layout_width="160dp"
                 android:layout_height="wrap_content"
                 android:background="@drawable/boton_redondo"
                 android:theme="@style/RaisedButtonDark"
-                android:text="@string/login"
-                android:onClick="LogIn" />
+                android:text="@string/login" />
         </LinearLayout>
 
             //Linear Layout para agrupar los dos textView de Crear Cuenta

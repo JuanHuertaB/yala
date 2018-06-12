@@ -41,18 +41,20 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center_horizontal"
-                    android:theme="@style/BlackStyleText"
+                    android:fontFamily="@font/didact_gothic"
+                    android:textColor="@android:color/black"
                     android:text="Juan Carlos"
                     android:textSize="25dp"
                     android:textStyle="bold" />
 
                 //UBICACIÓN
                 <TextView
-                    android:id="@+id/locartion_profile"
+                    android:id="@+id/location_profile"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center_horizontal"
-                    android:theme="@style/BlackStyleText"
+                    android:fontFamily="@font/didact_gothic"
+                    android:textColor="@android:color/black"
                     android:layout_marginTop="@dimen/marginTop"
                     android:text="Surco"
                     android:textSize="22dp"/>
@@ -63,7 +65,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center_horizontal"
-                    android:theme="@style/BlackStyleText"
+                    android:fontFamily="@font/didact_gothic"
+                    android:textColor="@android:color/black"
                     android:layout_marginTop="@dimen/marginTop"
                     android:text="955677278"
                     android:textSize="22dp" />
