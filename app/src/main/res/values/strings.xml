@@ -1,6 +1,5 @@
 <resources>
     <string name="app_name">Yala</string>
-    <string name="action_settings">Settings</string>
     <string name="title_activity_referencia">ReferenciaActivity</string>
     <string name="hint_username">Usuario</string>
     <string name="hint_password">Contraseña</string>
@@ -12,13 +11,19 @@
     <string name="signUp">REGISTRARSE</string>
     <string name="toolbar_title_createAccount">CREAR CUENTA</string>
     <string name="profile_tab">Perfil</string>
-    <string name="collection_tab">Colección</string>
-    <string name="search_tab">Buscar</string>
+    <string name="collection_tab">Mi Colección</string>
+    <string name="search_tab">Buscar figuritas</string>
     <string name="signUpTitle">CREAR CUENTA</string>
     <string name="edit">Editar</string>
     <string name="total">Total:</string>
     <string name="Completadas">Completadas:</string>
     <string name="Repetidas">Repetidas:</string>
-    <string name="Coleccion_toolbar_title">Colección</string>
+    <string name="Coleccion_toolbar_title">Mi Colección</string>
+    <string name="hint_nameAlbum">Nombre</string>
+    <string name="hint_editorial">Editorial o marca</string>
+    <string name="hint_cantidad">Cantidad</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>

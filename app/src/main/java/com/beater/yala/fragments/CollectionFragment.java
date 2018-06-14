@@ -1,5 +1,6 @@
 package com.beater.yala.fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
@@ -14,6 +15,7 @@ import android.widget.LinearLayout;
 
 import com.beater.yala.R;
 import com.beater.yala.adapter.AlbumAdapterRecyclerView;
+import com.beater.yala.dialogos.SolicitudAlbum;
 import com.beater.yala.model.Album;
 
 import java.util.ArrayList;
@@ -50,6 +52,15 @@ public class CollectionFragment extends Fragment {
         albumsRecycler.setAdapter(albumAdapterRecyclerView);
 
         FloatingActionButton floatingActionButton = (FloatingActionButton) view.findViewById(R.id.fab_id);
+
+        floatingActionButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(v.getContext(), SolicitudAlbum.class);
+                startActivity(intent);
+            }
+        });
+
 
 
         return view;

@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.beater.yala.R;
 import com.beater.yala.model.Album;
+//import com.bumptech.glide.Glide;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -45,7 +46,8 @@ public class AlbumAdapterRecyclerView  extends RecyclerView.Adapter<AlbumAdapter
         holder.totalCard.setText(Integer.toString(album.getTotal()));
         holder.completadasCard.setText(Integer.toString(album.getCompletadas()));
         holder.repetidasCard.setText(Integer.toString(album.getRepetidas()));
-        Picasso.get().load(album.getPicture()).into(holder.pictureCard);
+        Picasso.get().load(album.getPicture()).fit().centerCrop().into(holder.pictureCard);
+        //Glide.with(activity.getApplicationContext()).load(album.getPicture()).into(holder.pictureCard);
     }
 
     @Override

@@ -49,7 +49,7 @@ public class CreateAccountActivity extends AppCompatActivity implements Response
             }
         });
 
-        ;
+        
     }
 
     public void showToolbar(String title, boolean upButton){

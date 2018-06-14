@@ -15,5 +15,8 @@
     <string name="total">Total:</string>
     <string name="Completadas">Completed:</string>
     <string name="Repetidas">Repeated:</string>
+    <string name="hint_nameAlbum">Nombre</string>
+    <string name="hint_editorial">Editorial o marca</string>
+    <string name="hint_cantidad">cantidad</string>
 
 </resources>

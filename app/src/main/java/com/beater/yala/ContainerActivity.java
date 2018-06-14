@@ -7,6 +7,7 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.widget.FrameLayout;
 
@@ -39,14 +40,16 @@ public class ContainerActivity extends AppCompatActivity {
         frameLayout = (FrameLayout) findViewById(R.id.main_frame);
         fabAddAlbum = (FloatingActionButton) findViewById(R.id.fab_id);
 
+        showToolbar(getResources().getString(R.string.toolbar_title_createAccount), true);
+
         Bundle objetoEnviado = getIntent().getExtras();
         Coleccionista coleccionista = null;
 
 
 
         //Primer fragmento en mostrar
-        setFragment(profileFragment);
-        bottomNavBar.setSelectedItemId(R.id.profile_tab);
+        setFragment(collectionFragment);
+        bottomNavBar.setSelectedItemId(R.id.collection_tab);
 
         bottomNavBar.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -80,5 +83,13 @@ public class ContainerActivity extends AppCompatActivity {
         fragmentTransaction.replace(R.id.main_frame, fragment);
         fragmentTransaction.commit();
     }
+
+    public void showToolbar(String title, boolean upButton){
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle(title);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(upButton);
+    }
+
 
 }
