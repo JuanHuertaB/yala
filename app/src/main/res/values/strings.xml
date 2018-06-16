@@ -18,12 +18,17 @@
     <string name="total">Total:</string>
     <string name="Completadas">Completadas:</string>
     <string name="Repetidas">Repetidas:</string>
-    <string name="Coleccion_toolbar_title">Mi Colección</string>
+    <string name="Coleccion_toolbar_title">MI COLECCIÓN</string>
+    <string name="Buscar_Figuritas_toolbar_title">MI COLECCIÓN</string>
     <string name="hint_nameAlbum">Nombre</string>
     <string name="hint_editorial">Editorial o marca</string>
     <string name="hint_cantidad">Cantidad</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-
+    <string name="solicitar">Solicitar</string>
+    <string name="hint_num_figurita">Número de figuritas</string>
+    <string-array name="albums_array">
+        <item>Dragon Ball</item>
+        <item>Dragon Ball Super</item>
+        <item>Rusia 2018</item>
+        <item>Avengers</item>
+    </string-array>
 </resources>

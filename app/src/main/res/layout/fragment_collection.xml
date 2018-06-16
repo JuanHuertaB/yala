@@ -6,17 +6,20 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".fragments.CollectionFragment">
+
+    <include layout="@layout/actionbar_toolbar"/>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginTop="@dimen/height_toolbar"
         android:paddingTop="3dp"
         android:orientation="vertical">
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/albumRecycler"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
-        </android.support.v7.widget.RecyclerView>
+            android:layout_height="match_parent"/>
 
     </LinearLayout>
 

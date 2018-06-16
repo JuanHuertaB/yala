@@ -18,5 +18,7 @@
     <string name="hint_nameAlbum">Nombre</string>
     <string name="hint_editorial">Editorial o marca</string>
     <string name="hint_cantidad">cantidad</string>
+    <string name="solicitar">Solicitar</string>
+    <string name="hint_num_figurita">Número de figuritas</string>
 
 </resources>
