@@ -9,8 +9,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.FrameLayout;
 
+import com.beater.yala.fragments.AddAlbumFragment;
 import com.beater.yala.fragments.CollectionFragment;
 import com.beater.yala.fragments.ProfileFragment;
 import com.beater.yala.fragments.SearchFragment;
@@ -21,10 +23,11 @@ public class ContainerActivity extends AppCompatActivity {
     private BottomNavigationView bottomNavBar;
     private FrameLayout frameLayout;
 
-    private FloatingActionButton fabAddAlbum;
+    private FloatingActionButton floatingActionButton;
     private ProfileFragment profileFragment;
     private CollectionFragment collectionFragment;
     private SearchFragment searchFragment;
+    private AddAlbumFragment addAlbumFragment;
 
     
     @Override
@@ -35,17 +38,11 @@ public class ContainerActivity extends AppCompatActivity {
         profileFragment = new ProfileFragment();
         collectionFragment =  new CollectionFragment();
         searchFragment = new SearchFragment();
+        addAlbumFragment = new AddAlbumFragment();
 
         bottomNavBar = (BottomNavigationView) findViewById(R.id.bottomNavigationBar);
         frameLayout = (FrameLayout) findViewById(R.id.main_frame);
-        fabAddAlbum = (FloatingActionButton) findViewById(R.id.fab_id);
-
-        showToolbar(getResources().getString(R.string.toolbar_title_createAccount), true);
-
-        Bundle objetoEnviado = getIntent().getExtras();
-        Coleccionista coleccionista = null;
-
-
+        floatingActionButton = (FloatingActionButton) findViewById(R.id.fab_id);
 
         //Primer fragmento en mostrar
         setFragment(collectionFragment);
@@ -74,7 +71,6 @@ public class ContainerActivity extends AppCompatActivity {
                 }
             }
         });
-
         }
 
     private void setFragment(Fragment fragment) {
@@ -83,13 +79,5 @@ public class ContainerActivity extends AppCompatActivity {
         fragmentTransaction.replace(R.id.main_frame, fragment);
         fragmentTransaction.commit();
     }
-
-    public void showToolbar(String title, boolean upButton){
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle(title);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(upButton);
-    }
-
 
 }

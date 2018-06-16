@@ -21,6 +21,10 @@ public class Album {
         this.repetidas = repetidas;
     }
 
+    public Album(){
+
+    }
+
     public String getPicture() {
         return picture;
     }
@@ -67,5 +71,10 @@ public class Album {
 
     public void setRepetidas(int repetidas) {
         this.repetidas = repetidas;
+    }
+
+    @Override
+    public String toString(){
+        return albumName;
     }
 }

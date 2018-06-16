@@ -1,9 +1,12 @@
 package com.beater.yala.fragments;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -11,6 +14,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 
 import com.beater.yala.R;
@@ -25,11 +29,12 @@ import java.util.ArrayList;
  */
 public class CollectionFragment extends Fragment {
 
+    private AddAlbumFragment addAlbumFragment;
+    private FrameLayout frameLayout;
 
     public CollectionFragment() {
         // Required empty public constructor
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -37,34 +42,35 @@ public class CollectionFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_collection,container,false);
 
-        //showToolbar(getResources().getString(R.string.Coleccion_toolbar_title),false, view);
+        addAlbumFragment = new AddAlbumFragment();
+        frameLayout = (FrameLayout) container.findViewById(R.id.main_frame);
 
+        showToolbar(getResources().getString(R.string.Coleccion_toolbar_title),false, view);
         RecyclerView albumsRecycler = (RecyclerView) view.findViewById(R.id.albumRecycler);
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
 
         albumsRecycler.setLayoutManager(linearLayoutManager);
-
         AlbumAdapterRecyclerView albumAdapterRecyclerView =
                 new AlbumAdapterRecyclerView(buildAlbumes(), R.layout.cardview_album,getActivity());
-
         albumsRecycler.setAdapter(albumAdapterRecyclerView);
 
         FloatingActionButton floatingActionButton = (FloatingActionButton) view.findViewById(R.id.fab_id);
 
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(v.getContext(), SolicitudAlbum.class);
-                startActivity(intent);
+            public void onClick(View view) {
+
+                FragmentTransaction fragmentTransaction = getChildFragmentManager().beginTransaction();
+                fragmentTransaction.replace(R.id.main_frame, addAlbumFragment);
+                fragmentTransaction.commit();
+
+               /* Snackbar.make(v, "Replace with your own action", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();*/
             }
         });
-
-
-
         return view;
-
     }
 
     public ArrayList<Album> buildAlbumes(){
@@ -76,11 +82,12 @@ public class CollectionFragment extends Fragment {
         return album;
     }
 
-   public void showToolbar(String title, boolean upButton, View view){
+    public void showToolbar(String title, boolean upButton, View view){
         Toolbar toolbar = (Toolbar) view.findViewById(R.id.toolbar);
-       ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
-       ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle(title);
-       ((AppCompatActivity) getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(upButton);
+        toolbar.setTitleTextColor(Color.WHITE);
+        ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
+        ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle(title);
+        ((AppCompatActivity) getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(upButton);
     }
 
 }
