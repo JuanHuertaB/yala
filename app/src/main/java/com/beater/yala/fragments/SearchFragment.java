@@ -71,17 +71,9 @@ public class SearchFragment extends Fragment implements Response.Listener<JSONOb
 
     }
 
-    private void llenaSpinner(){
-
-        SharedPreferences preferences = getContext().getSharedPreferences("credenciales", Context.MODE_PRIVATE);
-        Integer idUser = preferences.getInt("id",1);
-
-        String url = "https://juanhb.000webhostapp.com/Obtener_Albumes_By_Usuario.php?idUser="+ idUser +"" ;
-
-    }
     @Override
     public void onResponse(JSONObject response) {
-        ArrayList<Album> lista = new ArrayList<Album>();
+        ArrayList<Album> lista = new ArrayList<>();
         JSONArray json = response.optJSONArray("albumes");
         JSONObject jsonObject;
 
@@ -95,7 +87,7 @@ public class SearchFragment extends Fragment implements Response.Listener<JSONOb
                 lista.add(a);
                 }
 
-            ArrayAdapter<Album> a = new ArrayAdapter<Album>(getActivity().getApplicationContext(), R.layout.spinner_item,lista);
+            ArrayAdapter<Album> a = new ArrayAdapter<>(getActivity().getApplicationContext(), R.layout.spinner_item,lista);
             albumSpinner.setAdapter(a);
 
         } catch (JSONException e) {

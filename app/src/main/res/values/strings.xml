@@ -25,10 +25,4 @@
     <string name="hint_cantidad">Cantidad</string>
     <string name="solicitar">Solicitar</string>
     <string name="hint_num_figurita">Número de figuritas</string>
-    <string-array name="albums_array">
-        <item>Dragon Ball</item>
-        <item>Dragon Ball Super</item>
-        <item>Rusia 2018</item>
-        <item>Avengers</item>
-    </string-array>
 </resources>

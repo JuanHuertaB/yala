@@ -67,7 +67,7 @@ public class CollectionFragment extends Fragment implements Response.Listener<JS
         request = Volley.newRequestQueue(getContext());
 
         //TOOLBAR
-        showToolbar(getResources().getString(R.string.Coleccion_toolbar_title),false, view);
+        showToolbar(getResources().getString(R.string.Coleccion_toolbar_title),true, view);
 
         //RECYCLERVIEW
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
@@ -80,7 +80,7 @@ public class CollectionFragment extends Fragment implements Response.Listener<JS
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                FragmentTransaction fragmentTransaction = getChildFragmentManager().beginTransaction();
+                FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
                 fragmentTransaction.replace(R.id.main_frame, addAlbumFragment);
                 fragmentTransaction.commit();
 
