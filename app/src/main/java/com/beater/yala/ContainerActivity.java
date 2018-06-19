@@ -23,13 +23,10 @@ public class ContainerActivity extends AppCompatActivity {
     private BottomNavigationView bottomNavBar;
     private FrameLayout frameLayout;
 
-    private FloatingActionButton floatingActionButton;
     private ProfileFragment profileFragment;
     private CollectionFragment collectionFragment;
     private SearchFragment searchFragment;
-    private AddAlbumFragment addAlbumFragment;
 
-    
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,11 +35,9 @@ public class ContainerActivity extends AppCompatActivity {
         profileFragment = new ProfileFragment();
         collectionFragment =  new CollectionFragment();
         searchFragment = new SearchFragment();
-        addAlbumFragment = new AddAlbumFragment();
 
         bottomNavBar = (BottomNavigationView) findViewById(R.id.bottomNavigationBar);
         frameLayout = (FrameLayout) findViewById(R.id.main_frame);
-        floatingActionButton = (FloatingActionButton) findViewById(R.id.fab_id);
 
         //Primer fragmento en mostrar
         setFragment(collectionFragment);

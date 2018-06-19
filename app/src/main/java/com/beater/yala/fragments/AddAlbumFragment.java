@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -13,6 +14,8 @@ import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -22,6 +25,7 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.beater.yala.R;
 import com.beater.yala.adapter.AddAlbumAdapterRecyclerView;
+import com.beater.yala.dialogos.Solicitud_Dialogo;
 import com.beater.yala.model.Album;
 
 import org.json.JSONArray;
@@ -34,18 +38,18 @@ import java.util.ArrayList;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class AddAlbumFragment extends Fragment implements Response.Listener<JSONObject>, Response.ErrorListener {
+public class AddAlbumFragment extends Fragment implements Response.Listener<JSONObject>, Response.ErrorListener{
 
     private RequestQueue request;
     private JsonObjectRequest jsonObjectRequest;
     private ArrayList listaAlbumes;
     private RecyclerView addAlbumRecycler;
-
+    private Button btn_solicitarAlbum;
+    Context contexto;
 
     public AddAlbumFragment() {
         // Required empty public constructor
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -54,8 +58,6 @@ public class AddAlbumFragment extends Fragment implements Response.Listener<JSON
 
         View view = inflater.inflate(R.layout.fragment_add_album, container, false);
         showToolbar(getResources().getString(R.string.Buscar_Figuritas_toolbar_title),true,view);
-
-
         listaAlbumes = new ArrayList<>();
         //RECYCLERVIEW
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
@@ -64,6 +66,15 @@ public class AddAlbumFragment extends Fragment implements Response.Listener<JSON
         addAlbumRecycler.setLayoutManager(linearLayoutManager);
         request = Volley.newRequestQueue(getContext());
         loadWebService();
+        btn_solicitarAlbum = (Button) view.findViewById(R.id.btn_solicitar);
+
+        btn_solicitarAlbum.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
         return view;
     }
 
@@ -117,5 +128,4 @@ public class AddAlbumFragment extends Fragment implements Response.Listener<JSON
     public void onErrorResponse(VolleyError error) {
 
     }
-
 }
