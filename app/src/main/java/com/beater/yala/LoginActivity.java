@@ -1,19 +1,17 @@
 package com.beater.yala;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
+import android.text.TextPaint;
 import android.util.Log;
 import android.view.View;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -22,13 +20,15 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
-import com.beater.yala.model.Coleccionista;
+import com.beater.yala.data.SessionManagement;
+import com.beater.yala.dialogos.AlertDialogManager;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.w3c.dom.Text;
 
-import java.util.Map;
+import java.time.format.TextStyle;
 
 public class LoginActivity extends AppCompatActivity implements Response.Listener<JSONObject>,Response.ErrorListener{
 
@@ -37,15 +37,22 @@ public class LoginActivity extends AppCompatActivity implements Response.Listene
 
     RequestQueue request;
     JsonObjectRequest jsonObjectRequest;
+    SessionManagement session;
+    ProgressDialog progress;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_login);
+        //Session Manager
+        session = new SessionManagement(getApplicationContext());
+        progress = new ProgressDialog(LoginActivity.this);
 
-        cleanSharedPreferences();
-
+        if(session.isLoggedIn() == true){
+            Intent intent = new Intent(getApplicationContext(),ContainerActivity.class);
+            startActivity(intent);
+            finish();
+        }
         username = (EditText) findViewById(R.id.username);
         password = (EditText) findViewById(R.id.password);
         login_btn = (Button) findViewById(R.id.login_btn);
@@ -68,59 +75,74 @@ public class LoginActivity extends AppCompatActivity implements Response.Listene
 
     //VALIDAR USUARIO CON WEB SERVICE
     private void loadWebService() {
-        String url ="https://juanhb.000webhostapp.com/Iniciar_Sesion.php?" +
-                            "username="+ username.getText().toString() +
-                            "&password="+ password.getText().toString() +"";
-        url = url.replace(" ","%20");
-        jsonObjectRequest= new JsonObjectRequest(Request.Method.GET,url,null,this,this);
-        request.add(jsonObjectRequest);
+        showProgressDialog("Iniciando Sesión ...");
+
+        String user = username.getText().toString();
+        String pass = password.getText().toString();
+
+        if (user.trim().length() > 0 && pass.trim().length() > 0) {
+            String url = "https://juanhb.000webhostapp.com/Iniciar_Sesion.php?" +
+                    "username=" + user +
+                    "&password=" + pass + "";
+            url = url.replace(" ", "%20");
+
+            jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null, this, this);
+            request.add(jsonObjectRequest);
+
+        }else{
+
+            Toast.makeText(getApplicationContext(),"Ingrese su nombre de usuario y contraseña",Toast.LENGTH_SHORT).show();
+            //alert.showAlertDialog(LoginActivity.this, "Error al iniciar sesión","Ingrese su nombre de usuario y contraseña",false);
+        }
+
     }
 
     @Override
     public void onResponse(JSONObject response) {
-        //Toast.makeText(getApplicationContext(),"Inicio de sesión exitoso"+ response,Toast.LENGTH_LONG).show();
-        JSONArray json = response.optJSONArray("usuarios");
-        //JSONObject json = new JSONObject((Map) response);
-        //JSONArray jsonArray = json.optJSONArray("estado");
+
         JSONObject jsonObject;
+        Integer valor = response.optInt("estado");
 
-        //JSONArray json = response.optJSONArray("usuarios");
+        if( valor == 1){
+            JSONArray json = response.optJSONArray("usuarios");
 
-        try {
+            try {
             jsonObject = json.getJSONObject(0);
 
-            Integer id = jsonObject.optInt("idColeccionista");
+            String id = jsonObject.optString("idColeccionista");
             String username =jsonObject.optString("usuario");
             String location =jsonObject.optString("ubicacion");
             String phoneNumber =jsonObject.optString("contacto");
 
-            SharedPreferences preferences = getSharedPreferences("credenciales", Context.MODE_PRIVATE);
-            SharedPreferences.Editor editor = preferences.edit();
-                editor.putInt("id", id);
-                editor.putString("username", username);
-                editor.putString("location", location);
-                editor.putString("phoneNumber", phoneNumber);
-                editor.apply();
+            session.createLoginSession(id,username,phoneNumber,location);
+
+            progress.hide();
 
             Intent intent = new Intent(getApplicationContext(),ContainerActivity.class);
             startActivity(intent);
             finish();
 
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
+            } catch (JSONException e) {
+                 e.printStackTrace();
+
+                }
+        }else {
+                Toast.makeText(getApplicationContext(),"Nombre de usuario o contraseña incorrectos",Toast.LENGTH_SHORT).show();
+               // alert.showAlertDialog(LoginActivity.this, "Error al iniciar sesión","Nombre de usuario o contraseña incorrectos",false);
+            }
     }
 
     @Override
     public void onErrorResponse(VolleyError error) {
         Toast.makeText(getApplicationContext(),"No se pudo iniciar sesión"+ error.toString(),Toast.LENGTH_LONG).show();
-        Log.i("ERROR",error.toString());
+        progress.hide();
     }
 
-    //BORRAR DATOS GUARDADOS EN SHARED PREFERENCES
-    private void cleanSharedPreferences(){
-        SharedPreferences preferences = getSharedPreferences("credenciales", Context.MODE_PRIVATE);
-        preferences.edit().clear().apply();
+    public void showProgressDialog(String title) {
+        progress.setMessage(title);
+        progress.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+        progress.setProgressStyle(TextPaint.ANTI_ALIAS_FLAG);
+        progress.setCancelable(false);
+        progress.show();
     }
-
 }

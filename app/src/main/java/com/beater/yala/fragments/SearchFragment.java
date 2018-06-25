@@ -24,6 +24,7 @@ import com.android.volley.toolbox.Volley;
 import com.beater.yala.ContainerActivity;
 import com.beater.yala.R;
 
+import com.beater.yala.data.SessionManagement;
 import com.beater.yala.model.Album;
 import com.loopj.android.http.*;
 
@@ -33,6 +34,7 @@ import org.json.JSONObject;
 
 import java.sql.Struct;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import cz.msebera.android.httpclient.Header;
 
@@ -45,6 +47,7 @@ public class SearchFragment extends Fragment implements Response.Listener<JSONOb
     private Spinner albumSpinner;
     RequestQueue request;
     JsonObjectRequest jsonObjectRequest;
+    SessionManagement session;
 
     public SearchFragment() {
         // Required empty public constructor
@@ -54,21 +57,26 @@ public class SearchFragment extends Fragment implements Response.Listener<JSONOb
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_search, container, false);
+        session = new SessionManagement(getContext());
+
+        //TOOLBAR
         showToolbar(getResources().getString(R.string.Buscar_Figuritas_toolbar_title),false, view);
+
+        //SPINNER
         albumSpinner =  (Spinner) view.findViewById(R.id.spinner_albums);
         request = Volley.newRequestQueue(getContext());
+        //REALIZA LA CONSULTA A BD
         loadWebService();
         return view;
     }
 
     private void loadWebService() {
-        SharedPreferences preferences = getContext().getSharedPreferences("credenciales", Context.MODE_PRIVATE);
-        Integer idUser = preferences.getInt("id",1);
+        HashMap<String,String> user = session.getUserDetails();
+        String idUser = user.get(SessionManagement.KEY_ID);
 
         String url = "https://juanhb.000webhostapp.com/Obtener_Albumes_By_Usuario.php?idUser="+ idUser +"" ;
         jsonObjectRequest = new JsonObjectRequest(Request.Method.GET,url,null, this, this);
         request.add(jsonObjectRequest);
-
     }
 
     @Override

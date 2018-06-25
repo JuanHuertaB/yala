@@ -11,6 +11,9 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.beater.yala.R;
+import com.beater.yala.data.SessionManagement;
+
+import java.util.HashMap;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -18,6 +21,7 @@ import com.beater.yala.R;
 public class ProfileFragment extends Fragment {
 
     private TextView username, location,phoneNumber;
+    SessionManagement session;
 
     public ProfileFragment() {
         // Required empty public constructor
@@ -28,24 +32,21 @@ public class ProfileFragment extends Fragment {
                              Bundle savedInstanceState) {
 
         View view  = inflater.inflate(R.layout.fragment_profile, container, false);
+        session = new SessionManagement(getContext());
         loadPreferences(view);
         return view;
     }
 
-    public void loadPreferences(View view){
+    public void loadPreferences(View view) {
+        HashMap<String, String> user = session.getUserDetails();
+
         username = (TextView) view.findViewById(R.id.username_profile);
         location = (TextView) view.findViewById(R.id.location_profile);
         phoneNumber = (TextView) view.findViewById(R.id.phonenumber_profile);
 
-        SharedPreferences preferences = getContext().getSharedPreferences("credenciales", Context.MODE_PRIVATE);
-
-        String usernameSP= preferences.getString("username", "no encontrado");
-        String locationSP = preferences.getString("location", "no encontrado");
-        String phoneNumberSP = preferences.getString("phoneNumber", "no encontrado");
-
-        username.setText(usernameSP);
-        location.setText(locationSP);
-        phoneNumber.setText(phoneNumberSP);
+        username.setText(user.get(SessionManagement.KEY_NAME));
+        location.setText(user.get(SessionManagement.KEY_LOCATION));
+        phoneNumber.setText( user.get(SessionManagement.KEY_NUMBER));
 
     }
 }

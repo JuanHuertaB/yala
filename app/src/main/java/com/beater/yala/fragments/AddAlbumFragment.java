@@ -25,6 +25,7 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.beater.yala.R;
 import com.beater.yala.adapter.AddAlbumAdapterRecyclerView;
+import com.beater.yala.data.SessionManagement;
 import com.beater.yala.dialogos.Solicitud_Dialogo;
 import com.beater.yala.model.Album;
 
@@ -33,6 +34,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 
 /**
@@ -46,6 +48,7 @@ public class AddAlbumFragment extends Fragment implements Response.Listener<JSON
     private RecyclerView addAlbumRecycler;
     private Button btn_solicitarAlbum;
     Context contexto;
+    SessionManagement session;
 
     public AddAlbumFragment() {
         // Required empty public constructor
@@ -57,6 +60,7 @@ public class AddAlbumFragment extends Fragment implements Response.Listener<JSON
         // Inflate the layout for this fragment
 
         View view = inflater.inflate(R.layout.fragment_add_album, container, false);
+        session = new SessionManagement(getContext());
         showToolbar(getResources().getString(R.string.Buscar_Figuritas_toolbar_title),true,view);
         listaAlbumes = new ArrayList<>();
         //RECYCLERVIEW
@@ -87,8 +91,8 @@ public class AddAlbumFragment extends Fragment implements Response.Listener<JSON
     }
 
     public void loadWebService(){
-        SharedPreferences preferences = getContext().getSharedPreferences("credenciales", Context.MODE_PRIVATE);
-        Integer idUser = preferences.getInt("id",1);
+        HashMap<String, String> user = session.getUserDetails();
+        String idUser = user.get(SessionManagement.KEY_ID);
 
         String url = "https://juanhb.000webhostapp.com/Obtener_No_Albumes_By_Usuario.php?idUser="+ idUser +"" ;
         jsonObjectRequest = new JsonObjectRequest(Request.Method.GET,url,null, this, this);

@@ -12,6 +12,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.text.TextPaint;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,8 +24,10 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.beater.yala.LoginActivity;
 import com.beater.yala.R;
 import com.beater.yala.adapter.AlbumAdapterRecyclerView;
+import com.beater.yala.data.SessionManagement;
 import com.beater.yala.model.Album;
 
 import org.json.JSONArray;
@@ -32,6 +35,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -45,7 +49,7 @@ public class CollectionFragment extends Fragment implements Response.Listener<JS
     private JsonObjectRequest jsonObjectRequest;
     private RequestQueue request;
     private ArrayList listaAlbumes;
-
+    SessionManagement session;
 
     public CollectionFragment() {
         // Required empty public constructor
@@ -56,13 +60,16 @@ public class CollectionFragment extends Fragment implements Response.Listener<JS
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_collection,container,false);
         frameLayout = (FrameLayout) container.findViewById(R.id.main_frame);
-
+        progress = new ProgressDialog(getContext());
+        showProgressDialog("Cargando Colección");
         addAlbumFragment = new AddAlbumFragment();
         listaAlbumes = new ArrayList<>();
         request = Volley.newRequestQueue(getContext());
 
+        session = new SessionManagement(getContext());
+
         //TOOLBAR
-        showToolbar(getResources().getString(R.string.Coleccion_toolbar_title),true, view);
+        showToolbar(getResources().getString(R.string.Coleccion_toolbar_title),false, view);
 
         //RECYCLERVIEW
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
@@ -81,18 +88,12 @@ public class CollectionFragment extends Fragment implements Response.Listener<JS
 
             }
         });
+
+        session.checkLogin();
         loadWebService();
         return view;
     }
 
-/*    public ArrayList<Album> buildAlbumes(){
-        ArrayList<Album> album = new ArrayList<>();
-        album.add(new Album("https://i.imgur.com/rtf4wlj.jpg", "Dragon Ball Super", "Panini",600, 496, 54 ));
-        album.add(new Album("https://i.imgur.com/JJiwCQF.jpg", "Dragon Ball Z", "Panini",600, 300, 54 ));
-        album.add(new Album("https://i.imgur.com/3RSPN31.jpg", "Rusia 2018", "Panini",600, 300, 54 ));
-        album.add(new Album("https://i.imgur.com/XBcoUKm.jpg", "Avengers: Infinity War", "Panini",600, 300, 54 ));
-        return album;
-    }*/
 
     public void showToolbar(String title, boolean upButton, View view){
         Toolbar toolbar = (Toolbar) view.findViewById(R.id.toolbar);
@@ -103,8 +104,8 @@ public class CollectionFragment extends Fragment implements Response.Listener<JS
     }
 
     public void loadWebService(){
-        SharedPreferences preferences = getContext().getSharedPreferences("credenciales", Context.MODE_PRIVATE);
-        Integer idUser = preferences.getInt("id",1);
+        HashMap<String, String> user = session.getUserDetails();
+        String idUser = user.get(SessionManagement.KEY_ID);
 
         String url = "https://juanhb.000webhostapp.com/Obtener_Albumes_By_Usuario.php?idUser="+ idUser +"" ;
         jsonObjectRequest = new JsonObjectRequest(Request.Method.GET,url,null, this, this);
@@ -114,6 +115,7 @@ public class CollectionFragment extends Fragment implements Response.Listener<JS
 
     @Override
     public void onResponse(JSONObject response) {
+
         Album album = null;
 
         JSONArray json =  response.optJSONArray("albumes");
@@ -138,7 +140,7 @@ public class CollectionFragment extends Fragment implements Response.Listener<JS
                     new AlbumAdapterRecyclerView(listaAlbumes, R.layout.cardview_album,getActivity());
             albumsRecycler.setAdapter(albumAdapterRecyclerView);
 
-
+            progress.hide();
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -147,5 +149,13 @@ public class CollectionFragment extends Fragment implements Response.Listener<JS
     @Override
     public void onErrorResponse(VolleyError error) {
 
+    }
+
+    public void showProgressDialog(String title) {
+        progress.setMessage(title);
+        progress.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+        progress.setProgressStyle(TextPaint.ANTI_ALIAS_FLAG);
+        progress.setCancelable(false);
+        progress.show();
     }
 }
