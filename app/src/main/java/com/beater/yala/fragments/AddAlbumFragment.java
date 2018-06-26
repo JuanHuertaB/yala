@@ -4,10 +4,13 @@ package com.beater.yala.fragments;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.Color;
+import android.icu.text.UnicodeSetSpanner;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
@@ -44,10 +47,9 @@ public class AddAlbumFragment extends Fragment implements Response.Listener<JSON
 
     private RequestQueue request;
     private JsonObjectRequest jsonObjectRequest;
-    private ArrayList listaAlbumes;
+    ArrayList<Album> listaAlbumes;
     private RecyclerView addAlbumRecycler;
     private Button btn_solicitarAlbum;
-    Context contexto;
     SessionManagement session;
 
     public AddAlbumFragment() {
@@ -61,21 +63,25 @@ public class AddAlbumFragment extends Fragment implements Response.Listener<JSON
 
         View view = inflater.inflate(R.layout.fragment_add_album, container, false);
         session = new SessionManagement(getContext());
-        showToolbar(getResources().getString(R.string.Buscar_Figuritas_toolbar_title),true,view);
         listaAlbumes = new ArrayList<>();
+        request = Volley.newRequestQueue(getContext());
+
+        showToolbar(getResources().getString(R.string.Buscar_Figuritas_toolbar_title),true,view);
+
         //RECYCLERVIEW
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
-        addAlbumRecycler = (RecyclerView) view.findViewById(R.id.id_addAlbum);
-        addAlbumRecycler.setLayoutManager(linearLayoutManager);
-        request = Volley.newRequestQueue(getContext());
-        loadWebService();
-        btn_solicitarAlbum = (Button) view.findViewById(R.id.btn_solicitar);
 
+        addAlbumRecycler = (RecyclerView) view.findViewById(R.id.id_addAlbum);
+        //addAlbumRecycler.setLayoutManager(linearLayoutManager);
+        addAlbumRecycler.setLayoutManager(new GridLayoutManager(getContext(),2));
+        loadWebService();
+
+        btn_solicitarAlbum = (Button) view.findViewById(R.id.btn_solicitar);
         btn_solicitarAlbum.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Toast.makeText(getContext(),"Álbum:", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -102,32 +108,45 @@ public class AddAlbumFragment extends Fragment implements Response.Listener<JSON
     @Override
     public void onResponse(JSONObject response) {
         Album album = null;
+        listaAlbumes = new ArrayList<>();
 
-        JSONArray json = response.optJSONArray("albumes");
+        if(response.optInt("estado") == 2){
+            Snackbar.make(getView(),"No hay álbumes por agregar",Snackbar.LENGTH_SHORT).show();
+        }else {
 
-        try {
-            for(int i=0; i<json.length();i++){
-                album = new Album();
-                JSONObject jsonObject = null;
-                jsonObject = json.getJSONObject(i);
+            JSONArray json = response.optJSONArray("albumes");
+            try {
+                for (int i = 0; i < json.length(); i++) {
+                    album = new Album();
+                    JSONObject jsonObject = null;
+                    jsonObject = json.getJSONObject(i);
 
-                album.setPicture(jsonObject.optString("portada"));
-                album.setAlbumName(jsonObject.optString("titulo"));
-                album.setEditorial(jsonObject.optString("marca"));
-                album.setTotal(jsonObject.optInt("cantidad"));
-                listaAlbumes.add(album);
+                    album.setIdAlbum(jsonObject.optString("idAlbum"));
+                    album.setPicture(jsonObject.optString("portada"));
+                    album.setAlbumName(jsonObject.optString("titulo"));
+                    album.setEditorial(jsonObject.optString("marca"));
+                    album.setTotal(jsonObject.optInt("cantidad"));
+                    listaAlbumes.add(album);
+                }
 
+                AddAlbumAdapterRecyclerView adapter =
+                        new AddAlbumAdapterRecyclerView(listaAlbumes, R.layout.cardview_add_album, getActivity());
+
+                adapter.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        String name = listaAlbumes.get(addAlbumRecycler.getChildLayoutPosition(v)).getAlbumName();
+                        Toast.makeText(getContext(), "Album: " + name, Toast.LENGTH_SHORT).show();
+                    }
+                });
+
+                addAlbumRecycler.setAdapter(adapter);
+
+            } catch (JSONException e) {
+                e.printStackTrace();
             }
-
-            AddAlbumAdapterRecyclerView addAlbumAdapterRecyclerView =
-                    new AddAlbumAdapterRecyclerView(listaAlbumes, R.layout.cardview_add_album,getActivity());
-            addAlbumRecycler.setAdapter(addAlbumAdapterRecyclerView);
-
-        } catch (JSONException e) {
-            e.printStackTrace();
         }
     }
-
     @Override
     public void onErrorResponse(VolleyError error) {
 

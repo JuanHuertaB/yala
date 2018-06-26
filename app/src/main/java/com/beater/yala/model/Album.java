@@ -5,6 +5,7 @@ package com.beater.yala.model;
  */
 public class Album {
 
+    private String idAlbum;
     private String picture;
     private String albumName;
     private String editorial;
@@ -12,7 +13,8 @@ public class Album {
     private int completadas;
     private int repetidas;
 
-    public Album(String picture, String albumName, String editorial, int total, int completadas, int repetidas) {
+    public Album(String idAlbum,String picture, String albumName, String editorial, int total, int completadas, int repetidas) {
+        this.idAlbum = idAlbum;
         this.picture = picture;
         this.albumName = albumName;
         this.editorial = editorial;
@@ -23,6 +25,14 @@ public class Album {
 
     public Album(){
 
+    }
+
+    public String getIdAlbum() {
+        return idAlbum;
+    }
+
+    public void setIdAlbum(String idAlbum) {
+        this.idAlbum= idAlbum;
     }
 
     public String getPicture() {
