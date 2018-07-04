@@ -1,6 +1,8 @@
 package com.beater.yala;
 
+import android.app.FragmentTransaction;
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -16,6 +18,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.beater.yala.data.SessionManagement;
 
 import org.json.JSONObject;
 
@@ -26,12 +29,13 @@ public class CreateAccountActivity extends AppCompatActivity implements Response
     ProgressDialog progress;
     RequestQueue request;
     JsonObjectRequest jsonObjectRequest;
+    SessionManagement session;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_account);
-
+        session = new SessionManagement(getApplicationContext());
         showToolbar(getResources().getString(R.string.toolbar_title_createAccount), true);
 
         username = (EditText) findViewById(R.id.username_add);
@@ -48,8 +52,6 @@ public class CreateAccountActivity extends AppCompatActivity implements Response
                 loadWebService();
             }
         });
-
-        
     }
 
     public void showToolbar(String title, boolean upButton){
@@ -79,6 +81,11 @@ public class CreateAccountActivity extends AppCompatActivity implements Response
         password.setText("");
         location.setText("");
         phoneNumber.setText("");
+
+        Intent intent = new Intent(getApplication(),LoginActivity.class);
+        startActivity(intent);
+        finish();
+
     }
 
     @Override

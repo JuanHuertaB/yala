@@ -1,9 +1,11 @@
 package com.beater.yala.model;
 
+import java.io.Serializable;
+
 /**
  * Created by JuanCarlos on 4/06/2018.
  */
-public class Album {
+public class Album implements Serializable{
 
     private String idAlbum;
     private String picture;

@@ -70,6 +70,7 @@ public class AddAlbumAdapterRecyclerView
             @Override
             public void onClick(View v) {
                 loadService(album);
+
             }
         });
 
@@ -82,18 +83,17 @@ public class AddAlbumAdapterRecyclerView
                         "idAlbum="+ album.getIdAlbum() +
                         "&idColeccionista="+ user.get(SessionManagement.KEY_ID)+
                         "&faltantes=" + album.getTotal();
+
         jsonObject = new JsonObjectRequest(Request.Method.GET,url,null, this, this);
         request.add(jsonObject);
-
     }
 
     @Override
     public void onResponse(JSONObject response) {
 
         if(response.optInt("estado") == 1){
-            //Snackbar.make(onCreateViewHolder(),"Álbum agregado correctamente",Snackbar.LENGTH_SHORT).show();
+            //Snackbar.make(R.layout.fragment_add_album,"Álbum agregado correctamente",Snackbar.LENGTH_SHORT).show();
         }
-
     }
 
     @Override

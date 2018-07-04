@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/albumDetails"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragments.AlbumDetailsFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:weightSum="1">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="6dp"
+            android:background="@color/colorPrimary"
+            android:orientation="vertical"
+            android:elevation="2dp">
+
+            //NOMBRE ÁLBUM, EDITORIAL Y BÓTON
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                //TÍTULO Y EDITORIAL
+
+                    <TextView
+                        android:id="@+id/tituloAlbum"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="@dimen/padding_izquierda"
+                        android:textStyle="bold"
+                        android:fontFamily="@font/didact_gothic"
+                        android:textSize="@dimen/titleSize"
+                        android:text="Rusia 2018"/>
+                    <TextView
+                        android:id="@+id/editorialAlbum"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:gravity="center_vertical"
+                        android:layout_marginStart="@dimen/padding_derecha"
+                        android:fontFamily="@font/didact_gothic"
+                        android:textSize="@dimen/editorialSize"
+                        android:text="Panini"/>
+                    <Button
+                        android:id="@+id/btnRepetidas"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="90dp"
+                        android:text="@string/verRepetidas"
+                        android:theme="@style/RaisedButtonDark" />
+            </LinearLayout>
+            <!--  -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_horizontal">
+                <!-- TOTAL -->
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                    <TextView
+                        android:id="@+id/labelTotal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="22dp"
+                        android:text="Total"
+                        android:fontFamily="@font/didact_gothic"/>
+                    <TextView
+                        android:id="@+id/totalAlbum"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:textSize="22dp"
+                        android:text="300"
+                        android:fontFamily="@font/didact_gothic"
+                        android:textStyle="bold"/>
+                </LinearLayout>
+
+                <!-- CONSEGUIDAS -->
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/doble_padding_derecha"
+                    android:layout_marginEnd="@dimen/doble_padding_izquierda"
+                    android:orientation="vertical">
+                    <TextView
+                        android:id="@+id/labelConseguidas"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="22dp"
+                        android:text="Conseguidas"
+                        android:fontFamily="@font/didact_gothic"/>
+                    <TextView
+                        android:id="@+id/conseguidasAlbum"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:fontFamily="@font/didact_gothic"
+                        android:textStyle="bold"
+                        android:textSize="22dp"
+                        android:text="0"/>
+                </LinearLayout>
+
+                <!-- FALTANTES -->
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                    <TextView
+                        android:id="@+id/labelFaltantes"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="22dp"
+                        android:text="Faltantes"
+                        android:fontFamily="@font/didact_gothic"/>
+                    <TextView
+                        android:id="@+id/faltantesAlbum"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:textSize="22dp"
+                        android:text="0"
+                        android:fontFamily="@font/didact_gothic"
+                        android:textStyle="bold"/>
+                </LinearLayout>
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:background="@color/background">
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/Recycler_figura"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_horizontal"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</android.support.design.widget.CoordinatorLayout>

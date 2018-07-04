@@ -1,6 +1,7 @@
 package com.beater.yala.fragments;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -8,8 +9,10 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
+import com.beater.yala.LoginActivity;
 import com.beater.yala.R;
 import com.beater.yala.data.SessionManagement;
 
@@ -21,7 +24,9 @@ import java.util.HashMap;
 public class ProfileFragment extends Fragment {
 
     private TextView username, location,phoneNumber;
+    private Button btnLogOut;
     SessionManagement session;
+
 
     public ProfileFragment() {
         // Required empty public constructor
@@ -32,6 +37,14 @@ public class ProfileFragment extends Fragment {
                              Bundle savedInstanceState) {
 
         View view  = inflater.inflate(R.layout.fragment_profile, container, false);
+        btnLogOut = view.findViewById(R.id.btn_logOut);
+
+        btnLogOut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                session.logoutUser();
+            }
+        });
         session = new SessionManagement(getContext());
         loadPreferences(view);
         return view;

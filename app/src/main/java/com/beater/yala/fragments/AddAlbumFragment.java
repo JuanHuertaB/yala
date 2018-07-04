@@ -1,13 +1,9 @@
 package com.beater.yala.fragments;
 
 
-import android.content.Context;
-import android.content.SharedPreferences;
 import android.graphics.Color;
-import android.icu.text.UnicodeSetSpanner;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
-import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
@@ -29,7 +25,7 @@ import com.android.volley.toolbox.Volley;
 import com.beater.yala.R;
 import com.beater.yala.adapter.AddAlbumAdapterRecyclerView;
 import com.beater.yala.data.SessionManagement;
-import com.beater.yala.dialogos.Solicitud_Dialogo;
+import com.beater.yala.dialogos.RequestAlbumDialog;
 import com.beater.yala.model.Album;
 
 import org.json.JSONArray;
@@ -50,6 +46,7 @@ public class AddAlbumFragment extends Fragment implements Response.Listener<JSON
     ArrayList<Album> listaAlbumes;
     private RecyclerView addAlbumRecycler;
     private Button btn_solicitarAlbum;
+    private Button btn_addAlbum;
     SessionManagement session;
 
     public AddAlbumFragment() {
@@ -59,7 +56,6 @@ public class AddAlbumFragment extends Fragment implements Response.Listener<JSON
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
 
         View view = inflater.inflate(R.layout.fragment_add_album, container, false);
         session = new SessionManagement(getContext());
@@ -73,7 +69,6 @@ public class AddAlbumFragment extends Fragment implements Response.Listener<JSON
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
 
         addAlbumRecycler = (RecyclerView) view.findViewById(R.id.id_addAlbum);
-        //addAlbumRecycler.setLayoutManager(linearLayoutManager);
         addAlbumRecycler.setLayoutManager(new GridLayoutManager(getContext(),2));
         loadWebService();
 
@@ -81,11 +76,16 @@ public class AddAlbumFragment extends Fragment implements Response.Listener<JSON
         btn_solicitarAlbum.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getContext(),"Álbum:", Toast.LENGTH_SHORT).show();
+                openDialog();
             }
         });
 
         return view;
+    }
+
+    private void openDialog() {
+        RequestAlbumDialog requestAlbumDialog = new RequestAlbumDialog();
+        requestAlbumDialog.show(getFragmentManager(),"Solicitar álbum ") ;
     }
 
     public void showToolbar(String title, boolean upButton, View view){
@@ -109,9 +109,11 @@ public class AddAlbumFragment extends Fragment implements Response.Listener<JSON
     public void onResponse(JSONObject response) {
         Album album = null;
         listaAlbumes = new ArrayList<>();
+        final AddAlbumAdapterRecyclerView adapter =
+                new AddAlbumAdapterRecyclerView(listaAlbumes, R.layout.cardview_add_album, getActivity());
 
         if(response.optInt("estado") == 2){
-            Snackbar.make(getView(),"No hay álbumes por agregar",Snackbar.LENGTH_SHORT).show();
+            Snackbar.make(this.getView(),"No hay álbumes por agregar",Snackbar.LENGTH_SHORT).show();
         }else {
 
             JSONArray json = response.optJSONArray("albumes");
@@ -120,7 +122,6 @@ public class AddAlbumFragment extends Fragment implements Response.Listener<JSON
                     album = new Album();
                     JSONObject jsonObject = null;
                     jsonObject = json.getJSONObject(i);
-
                     album.setIdAlbum(jsonObject.optString("idAlbum"));
                     album.setPicture(jsonObject.optString("portada"));
                     album.setAlbumName(jsonObject.optString("titulo"));
@@ -129,14 +130,11 @@ public class AddAlbumFragment extends Fragment implements Response.Listener<JSON
                     listaAlbumes.add(album);
                 }
 
-                AddAlbumAdapterRecyclerView adapter =
-                        new AddAlbumAdapterRecyclerView(listaAlbumes, R.layout.cardview_add_album, getActivity());
-
                 adapter.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         String name = listaAlbumes.get(addAlbumRecycler.getChildLayoutPosition(v)).getAlbumName();
-                        Toast.makeText(getContext(), "Album: " + name, Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getContext(), "Nombre álbum: " + name, Toast.LENGTH_SHORT).show();
                     }
                 });
 
@@ -147,6 +145,7 @@ public class AddAlbumFragment extends Fragment implements Response.Listener<JSON
             }
         }
     }
+
     @Override
     public void onErrorResponse(VolleyError error) {
 

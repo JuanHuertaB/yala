@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -82,26 +83,32 @@ public class SearchFragment extends Fragment implements Response.Listener<JSONOb
     @Override
     public void onResponse(JSONObject response) {
         ArrayList<Album> lista = new ArrayList<>();
-        JSONArray json = response.optJSONArray("albumes");
-        JSONObject jsonObject;
 
-        try {
+        if (response.optInt("estado") == 1) {
 
-            for(int i=0;i<json.length();i++) {
-                jsonObject = json.getJSONObject(i);
-                String nombreAlbum =jsonObject.optString("titulo");
-                Album a = new Album();
-                a.setAlbumName(nombreAlbum);
-                lista.add(a);
+            JSONArray json = response.optJSONArray("albumes");
+            JSONObject jsonObject;
+            ArrayAdapter<Album> a = new ArrayAdapter<>(getActivity().getApplicationContext(), R.layout.spinner_item, lista);
+
+            try {
+
+                for (int i = 0; i < json.length(); i++) {
+                    jsonObject = json.getJSONObject(i);
+                    String nombreAlbum = jsonObject.optString("titulo");
+                    Album album = new Album();
+                    album.setAlbumName(nombreAlbum);
+                    lista.add(album);
                 }
 
-            ArrayAdapter<Album> a = new ArrayAdapter<>(getActivity().getApplicationContext(), R.layout.spinner_item,lista);
-            albumSpinner.setAdapter(a);
 
-        } catch (JSONException e) {
-            e.printStackTrace();
+                albumSpinner.setAdapter(a);
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }else if(response.optInt("estado") == 2){
+            Snackbar.make(this.getView(),"agregue álbumes a su colección para buscar",Snackbar.LENGTH_SHORT).show();
         }
-
     }
 
     @Override

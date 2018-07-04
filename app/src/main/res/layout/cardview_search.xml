@@ -60,6 +60,7 @@
             android:orientation="vertical">
 
             <Button
+                android:id="@+id/btnMatch"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/didact_gothic"
@@ -68,6 +69,7 @@
                 android:theme="@style/RaisedButtonDark"/>
 
             <Button
+                android:id="@+id/btnVerPrecios"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/didact_gothic"

@@ -20,5 +20,8 @@
     <string name="hint_cantidad">cantidad</string>
     <string name="solicitar">Solicitar</string>
     <string name="hint_num_figurita">Número de figuritas</string>
+    <string name="logOut">Cerrar Sesión</string>
+    <string name="verRepetidas">Repetidas</string>
+    <string name="stats_tab">Estadísticas</string>
 
 </resources>

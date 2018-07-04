@@ -13,4 +13,8 @@
     <dimen name="paddingVertical">15dp</dimen>
     <dimen name="height_cardView">200dp</dimen>
     <dimen name="marginTop_textCardView">30dp</dimen>
+    <dimen name="titleSize">25dp</dimen>
+    <dimen name="editorialSize">15dp</dimen>
+    <dimen name="doble_padding_derecha">30dp</dimen>
+    <dimen name="doble_padding_izquierda">30dp</dimen>
 </resources>

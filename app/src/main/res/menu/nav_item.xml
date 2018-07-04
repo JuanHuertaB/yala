@@ -8,8 +8,11 @@
         android:title="@string/collection_tab"
         android:icon="@drawable/ic_collection"/>
 
-    <item android:id="@+id/serch_tab"
+    <item android:id="@+id/search_tab"
         android:title="@string/search_tab"
         android:icon="@drawable/ic_search"/>
+    <item android:id="@+id/stats_tab"
+        android:title="@string/stats_tab"
+        android:icon="@drawable/stats"/>
 
 </menu>
