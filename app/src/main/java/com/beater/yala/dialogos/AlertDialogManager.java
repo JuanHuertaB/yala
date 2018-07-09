@@ -10,7 +10,7 @@ import android.content.DialogInterface;
 public class AlertDialogManager {
 
     public void showAlertDialog(Context context, String title, String message, Boolean status){
-        AlertDialog alertDialog = new AlertDialog.Builder(context).create();
+        final AlertDialog alertDialog = new AlertDialog.Builder(context).create();
 
         //ASIGNAR TÍTULO DEL DIALOGO
         alertDialog.setTitle(title);
@@ -20,10 +20,15 @@ public class AlertDialogManager {
         alertDialog.setButton("OK", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-
+                alertDialog.dismiss();
             }
         });
 
         alertDialog.show();
+        }
+
+        public void hideDialog(Context context){
+            final AlertDialog alertDialog = new AlertDialog.Builder(context).create();
+            alertDialog.dismiss();
         }
 }

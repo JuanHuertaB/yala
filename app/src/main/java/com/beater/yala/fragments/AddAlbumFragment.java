@@ -62,7 +62,7 @@ public class AddAlbumFragment extends Fragment implements Response.Listener<JSON
         listaAlbumes = new ArrayList<>();
         request = Volley.newRequestQueue(getContext());
 
-        showToolbar(getResources().getString(R.string.Buscar_Figuritas_toolbar_title),true,view);
+        showToolbar(getResources().getString(R.string.Añadir_album_toolbar_title),true,view);
 
         //RECYCLERVIEW
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());

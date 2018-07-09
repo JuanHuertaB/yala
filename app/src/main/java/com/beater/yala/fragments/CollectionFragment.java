@@ -71,7 +71,6 @@ public class CollectionFragment extends Fragment implements Response.Listener<JS
         addAlbumFragment = new AddAlbumFragment();
         listaAlbumes = new ArrayList<Album>();
         request = Volley.newRequestQueue(getContext());
-
         session = new SessionManagement(getContext());
 
         //TOOLBAR
@@ -108,11 +107,12 @@ public class CollectionFragment extends Fragment implements Response.Listener<JS
     }
 
     public void loadWebService(){
-        showProgressDialog("Cargando Colección");
+        //showProgressDialog("Cargando Colección");
         HashMap<String, String> user = session.getUserDetails();
         String idUser = user.get(SessionManagement.KEY_ID);
+        String hostname = getString(R.string.host_name);
 
-        String url = "https://juanhb.000webhostapp.com/Obtener_Albumes_By_Usuario.php?idUser="+ idUser +"" ;
+        String url = hostname + "/Obtener_Albumes_By_Usuario.php?idUser="+ idUser +"" ;
         jsonObjectRequest = new JsonObjectRequest(Request.Method.GET,url,null, this, this);
         request.add(jsonObjectRequest);
     }
@@ -159,7 +159,7 @@ public class CollectionFragment extends Fragment implements Response.Listener<JS
         }else if(response.optInt("estado") == 2){
             Snackbar.make(this.getView(),"No tiene álbumes en su colección",Snackbar.LENGTH_SHORT).show();
         }
-        progress.hide();
+        progress.dismiss();
     }
 
     @Override

@@ -1,9 +1,11 @@
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_gravity="center_horizontal"
-    android:id="@+id/addAlbum_dialog">
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingStart="@dimen/padding_derecha"
+        android:paddingEnd="@dimen/padding_izquierda"
+        android:layout_gravity="center_horizontal"
+        android:id="@+id/addAlbum_dialog">
 
             <EditText
                 android:id="@+id/req_nombreAlbum"

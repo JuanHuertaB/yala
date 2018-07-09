@@ -80,8 +80,10 @@ public class LoginActivity extends AppCompatActivity implements Response.Listene
         String user = username.getText().toString();
         String pass = password.getText().toString();
 
+        String hostname = getString(R.string.host_name);
+
         if (user.trim().length() > 0 && pass.trim().length() > 0) {
-            String url = "https://juanhb.000webhostapp.com/Iniciar_Sesion.php?" +
+            String url = hostname + "/Iniciar_Sesion.php?" +
                     "username=" + user +
                     "&password=" + pass + "";
             url = url.replace(" ", "%20");

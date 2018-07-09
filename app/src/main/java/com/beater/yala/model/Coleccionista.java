@@ -7,17 +7,29 @@ import java.io.Serializable;
  */
 public class Coleccionista  implements Serializable{
 
-    private int id;
+    private String id;
     private String username;
     private String password;
     private String location;
     private String phoneNumber;
 
-    public int getId() {
+    public Coleccionista(String id, String username, String password, String location, String phoneNumber) {
+        this.id = id;
+        this.username = username;
+        this.password = password;
+        this.location = location;
+        this.phoneNumber = phoneNumber;
+    }
+
+    public Coleccionista(){
+
+    }
+
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 

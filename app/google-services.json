@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "492119334216",
+    "firebase_url": "https://yala-e2f05.firebaseio.com",
+    "project_id": "yala-e2f05",
+    "storage_bucket": "yala-e2f05.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:492119334216:android:178de197b3b4299d",
+        "android_client_info": {
+          "package_name": "com.beater.yala"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "492119334216-16evo52fdtmfncirp9v9leqo6uhjg3bk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAKMLCOTtdRHN4SO6qDbE2_UM_6Zujsh4M"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

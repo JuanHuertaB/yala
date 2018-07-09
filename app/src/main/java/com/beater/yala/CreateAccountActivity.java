@@ -24,7 +24,7 @@ import org.json.JSONObject;
 
 public class CreateAccountActivity extends AppCompatActivity implements Response.Listener<JSONObject>,Response.ErrorListener{
 
-    EditText username, password, location, phoneNumber;
+    EditText eTusername, eTpassword, eTlocation, eTphoneNumber;
     Button createAccount_btn;
     ProgressDialog progress;
     RequestQueue request;
@@ -38,10 +38,11 @@ public class CreateAccountActivity extends AppCompatActivity implements Response
         session = new SessionManagement(getApplicationContext());
         showToolbar(getResources().getString(R.string.toolbar_title_createAccount), true);
 
-        username = (EditText) findViewById(R.id.username_add);
-        password = (EditText) findViewById(R.id.password_add);
-        location = (EditText) findViewById(R.id.location_add);
-        phoneNumber = (EditText) findViewById(R.id.phoneNumber_add);
+        eTusername = (EditText) findViewById(R.id.username_add);
+        eTpassword = (EditText) findViewById(R.id.password_add);
+        eTlocation = (EditText) findViewById(R.id.location_add);
+        eTphoneNumber = (EditText) findViewById(R.id.phoneNumber_add);
+
         createAccount_btn = (Button) findViewById(R.id.createAccount_btn);
 
         request = Volley.newRequestQueue(getApplicationContext());
@@ -62,25 +63,38 @@ public class CreateAccountActivity extends AppCompatActivity implements Response
     }
 
     private void loadWebService() {
-        String url = "https://juanhb.000webhostapp.com/Crear_Usuario.php?usuario="+
-                        username.getText().toString()+"&contraseña="+
-                        password.getText().toString()+"&ubicacion="+
-                        phoneNumber.getText().toString()+"&telefono="+
-                        location.getText().toString()+"";
-        url = url.replace(" ","%20");
+        String hostname = getString(R.string.host_name);
 
-        jsonObjectRequest = new JsonObjectRequest(Request.Method.GET,url, null,this,this);
-        request.add(jsonObjectRequest);
+        String username = eTusername.getText().toString();
+        String password = eTusername.getText().toString();
+        String location = eTusername.getText().toString();
+        String phoneNumber = eTusername.getText().toString();
+
+        if (username.trim().length() > 0 && password.trim().length() > 0 && location.trim().length() > 0 && phoneNumber.trim().length() > 0 ) {
+
+            String url = hostname+ "/Crear_Usuario.php?+" +
+                    "usuario="+username+
+                    "&contraseña="+password+
+                    "&ubicacion="+location+
+                    "&telefono="+phoneNumber+"";
+            url = url.replace(" ","%20");
+
+            jsonObjectRequest = new JsonObjectRequest(Request.Method.GET,url, null,this,this);
+            request.add(jsonObjectRequest);
+        }
+        else{
+            Toast.makeText(getApplicationContext(),"Uno de los datos no es válido",Toast.LENGTH_SHORT).show();
+        }
     }
 
     @Override
     public void onResponse(JSONObject response) {
         Toast.makeText(getApplicationContext(),"Se ha registrado correctamente",Toast.LENGTH_LONG).show();
         //progress.hide();
-        username.setText("");
-        password.setText("");
-        location.setText("");
-        phoneNumber.setText("");
+        eTusername.setText("");
+        eTpassword.setText("");
+        eTlocation.setText("");
+        eTphoneNumber.setText("");
 
         Intent intent = new Intent(getApplication(),LoginActivity.class);
         startActivity(intent);
